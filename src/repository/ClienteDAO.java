@@ -2,10 +2,14 @@ package repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import connectionFactory.ConnectionFactory;
 import model.Cliente;
+
 
 public class ClienteDAO {
 	private Connection conexao;
@@ -30,9 +34,30 @@ public class ClienteDAO {
 		stmt.execute();
 		stmt.close();
 		
-		
-		
 	}
+	
+	public List<Cliente> select() throws SQLException {
+		List<Cliente> clientes = new ArrayList<Cliente>();
+		String sql = "select * from T_AUTO_CLIENTE";
+		PreparedStatement stmt = conexao.prepareStatement(sql);
+		ResultSet rs = stmt.executeQuery();
+		while (rs.next()) {
+			Cliente cliente = new Cliente();
+			cliente.setId(rs.getLong("cd_cliente"));
+			cliente.setNome(rs.getString("nm_cliente"));
+			cliente.setEmail(rs.getString("ds_email"));
+			cliente. setTelefone(rs.getLong("nr_telefone"));
+			cliente.setDatanasc(rs.getDate("dt_nascimento"));
+			cliente.setEndereco(rs.getString("ds_endereco"));
+			cliente. setCpf(rs.getLong("nr_cpf"));
+			clientes.add(cliente);
+}
+		
+			rs.close();
+			stmt.close();
+			return clientes;
+	}
+	
 	
 	
 }

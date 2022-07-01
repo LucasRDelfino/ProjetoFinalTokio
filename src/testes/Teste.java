@@ -26,11 +26,16 @@ public class Teste {
 	bruno.setEndereco("Avenida Yervant");
 	bruno.setDatanasc(data);
 	
+	List<Cliente> clin = new ArrayList<Cliente>();
 	try {
-		dao.insert(bruno);
-		
+		clin = dao.select();
+			
 	} catch (SQLException e) {
 		e.printStackTrace();
+	}
+	for (Cliente cliente:clin) {
+		System.out.println("Id : "+cliente.getId()+" / Nome : "+cliente.getNome());
+		
 	}
 	
 }
