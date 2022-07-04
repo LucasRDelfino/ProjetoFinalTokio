@@ -1,4 +1,4 @@
-package front;
+package views;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
 import connectionFactory.ConnectionFactory;
 import repository.ClienteDAO;
 
-public class TelaCliente extends JFrame {
+public class TelaCategorias extends JFrame {
 	Connection c;
 	private JPanel pn1;
 	private JLabel lb1,lb2,lb3;
@@ -32,9 +32,9 @@ public class TelaCliente extends JFrame {
 	private PreparedStatement st;
 	private ResultSet rs;
 	ClienteDAO dao;
-	String sql = "SELECT * FROM T_AUTO_CLIENTE";
+	String sql = "SELECT * FROM T_AUTO_CATEGORIA";
 	
-	public TelaCliente() {
+	public TelaCategorias() {
 		Componentes();
 		Eventos();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,7 +57,7 @@ public class TelaCliente extends JFrame {
 		add(lb1);		
 		
 		//TITULO
-		lb2 = new JLabel ("Tabela Clientes");
+		lb2 = new JLabel ("Tabela Categorias");
 		lb2.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 41) );
 		lb2.setForeground(verde);
 		lb2.setBounds(420,10,400,100);
@@ -96,7 +96,7 @@ public class TelaCliente extends JFrame {
            
             st = c.prepareStatement(sql);
             rs= st.executeQuery();
-            DefaultTableModel tableModel = new DefaultTableModel(new String[] { "Id", "Nome","CPF","Telefone","Email","Dt_Nascimento","Endereço" }, 0) {
+            DefaultTableModel tableModel = new DefaultTableModel(new String[] { "Id", "Nome","Descrição" }, 0) {
                 public boolean isCellEditable(int row, int col) {
                     return false;
                 }
@@ -132,7 +132,7 @@ public class TelaCliente extends JFrame {
 	
 
 	public static void main(String[] args) {
-		new TelaCliente();	
+		new TelaCategorias();	
 		
 		
 	}
