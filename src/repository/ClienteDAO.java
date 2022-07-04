@@ -12,7 +12,10 @@ import model.Cliente;
 
 
 public class ClienteDAO {
-	private Connection conexao;
+	
+	private PreparedStatement statement;
+	private ResultSet resultSet;
+	public Connection conexao;
 	
 	
 	public ClienteDAO() {
