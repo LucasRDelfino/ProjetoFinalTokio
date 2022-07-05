@@ -23,16 +23,17 @@ public class ClienteDAO {
 	}
 	
 	public void insert(Cliente cliente) throws SQLException {
-		String sql = "insert into T_AUTO_CLIENTE (cd_cliente,nm_cliente,nr_cpf,nr_telefone,ds_email,dt_nascimento,ds_endereco) values (?,?,?,?,?,?,?)";
+		String sql = "insert into T_AUTO_CLIENTE (nm_cliente,nr_cpf,nr_telefone,"
+				+ "ds_email,ds_nascimento,ds_endereco) values (?,?,?,?,?,?)";
 		PreparedStatement stmt = conexao.prepareStatement(sql);
 		
-		stmt.setLong(1,cliente.getId());
-		stmt.setString(2,cliente.getNome());
-		stmt.setLong(3,cliente.getCpf());
-		stmt.setLong(4,cliente.getTelefone());
-		stmt.setString(5,cliente.getEmail());
-		stmt.setDate(6,cliente.getDatanasc());
-		stmt.setString(7,cliente.getEndereco());
+		
+		stmt.setString(1,cliente.getNome());
+		stmt.setLong(2,cliente.getCpf());
+		stmt.setLong(3,cliente.getTelefone());
+		stmt.setString(4,cliente.getEmail());
+		stmt.setDate(5,cliente.getDatanasc());
+		stmt.setString(6,cliente.getEndereco());
 		
 		stmt.execute();
 		stmt.close();

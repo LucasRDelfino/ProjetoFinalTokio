@@ -2,11 +2,17 @@ package views;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -21,13 +27,20 @@ import javax.swing.table.DefaultTableModel;
 
 import connectionFactory.ConnectionFactory;
 import repository.ClienteDAO;
+import model.Cliente;
+import repository.ClienteDAO;
 
 public class TelaAdicionar extends JFrame {
 	private JPanel pn1;
 	private JLabel lb1,lb2,lb3,lb4,lb5,lb6,lb7,lb8;
-	private JButton voltar;
+	private JButton voltar,adicionar;
 	private ImageIcon logo,logo2,fundo,teste;
 	private JTextField nome,cpf,telefone,email,dt_nasc,endereco;
+	String sql = "SELECT * FROM limateriais";
+	private int rs2;
+	private PreparedStatement st;
+	private ResultSet rs;
+	ClienteDAO dao;
 	
 	
 	public TelaAdicionar() {
@@ -67,14 +80,14 @@ public class TelaAdicionar extends JFrame {
 		
 		//TextFields
 		lb4 = new JLabel("Nome Completo:");
-		lb4.setBounds(115,200,500,50);
+		lb4.setBounds(107,200,500,50);
 	    lb4.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 15) );
 	    lb4.setForeground(Color.decode("#1E5128"));
 		add(lb4);
 		
 		
 		lb3 = new JLabel("CPF:");
-		lb3.setBounds(455,200,500,50);
+		lb3.setBounds(460,200,500,50);
 	    lb3.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 15) );
 	    lb3.setForeground(Color.decode("#1E5128"));
 		add(lb3);
@@ -88,21 +101,15 @@ public class TelaAdicionar extends JFrame {
 		
 		
 		lb6 = new JLabel("Email:");
-		lb6.setBounds(140,350,500,50);
+		lb6.setBounds(450,350,500,50);
 	    lb6.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 15) );
 	    lb6.setForeground(Color.decode("#1E5128"));
 		add(lb6);
-		
-		
-		lb7 = new JLabel("Data Nascimento:");
-		lb7.setBounds(375,350,500,50);
-	    lb7.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 15) );
-	    lb7.setForeground(Color.decode("#1E5128"));
-		add(lb7);
+				
 		
 		
 		lb8 = new JLabel("Endereço:");
-		lb8.setBounds(695,350,500,50);
+		lb8.setBounds(170,350,500,50);
 	    lb8.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 15) );
 	    lb8.setForeground(Color.decode("#1E5128"));
 		add(lb8);
@@ -126,24 +133,24 @@ public class TelaAdicionar extends JFrame {
 		add(telefone);	
 		
 		email = new JTextField();
-		email.setBounds(210,360, 120, 30);
+		email.setBounds(510,360, 120, 30);
 		email.setFont(new Font("Arial", Font.BOLD, 16));
 		email.setForeground(Color.BLACK);
 		add(email);	
 		
-		dt_nasc = new JTextField();
-		dt_nasc.setBounds(530,360, 120, 30);
-		dt_nasc.setFont(new Font("Arial", Font.BOLD, 16));
-		dt_nasc.setForeground(Color.BLACK);
-		add(dt_nasc);	
-		
+			
 		endereco = new JTextField();
-		endereco.setBounds(780,360, 120, 30);
+		endereco.setBounds(260,360, 120, 30);
 		endereco.setFont(new Font("Arial", Font.BOLD, 16));
 		endereco.setForeground(Color.BLACK);
 		add(endereco);	
 		
-		
+		adicionar = new JButton("Adicionar");
+		adicionar.setBounds(460, 500, 150, 55);
+		adicionar.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 13) );
+		add(adicionar);
+		adicionar.setBackground(verde);
+		adicionar.setForeground(Color.white);
 		
 		
 		
@@ -158,7 +165,32 @@ public class TelaAdicionar extends JFrame {
 	}
 	
 	public void Eventos() {
-	
+		adicionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+				ClienteDAO dao = new ClienteDAO();		
+                Cliente bruno = new Cliente(); 
+                
+                Calendar hoje = Calendar.getInstance();
+            	Date data = new Date(hoje.getTimeInMillis());
+            	
+       
+            	bruno.setNome(nome.getText());
+            	bruno.setCpf(Long.parseLong(cpf.getText()));
+              	bruno.setTelefone(Long. parseLong(telefone.getText()));
+              	bruno.setEmail(cpf.getText());
+              	bruno.setEndereco(endereco.getText());
+              	bruno.setDatanasc(data);
+             	try {
+					dao.insert(bruno);
+					System.out.println("Conta Criada");
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					System.out.println("Erro no cadastro");
+				}
+                              
+			}
+			});
 		
 	}
 	

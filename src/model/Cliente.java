@@ -4,9 +4,8 @@ import java.sql.Date;
 
 public class Cliente {
 	private long id,telefone,cpf;
-	private String nome,email,endereco;
+	private String nome,email,endereco ;
 	private Date datanasc;
-
 
 
 	public Cliente() {

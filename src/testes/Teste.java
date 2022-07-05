@@ -18,25 +18,23 @@ public class Teste {
 	Calendar hoje = Calendar.getInstance();
 	Date data = new Date(hoje.getTimeInMillis());
 	
-	bruno.setId(3L);	
+	
 	bruno.setNome("Bruno Aquino");
 	bruno.setEmail("brunoaquino@gmail.com");
 	bruno.setTelefone(5511913131311L);
 	bruno.setCpf(52641212811L);
-	bruno.setEndereco("Avenida Yervant");
 	bruno.setDatanasc(data);
+	bruno.setEndereco("Avenida Yervant");
 	
-	List<Cliente> clin = new ArrayList<Cliente>();
+	
+	
 	try {
-		clin = dao.select();
+		dao.insert(bruno);
 			
 	} catch (SQLException e) {
 		e.printStackTrace();
 	}
-	for (Cliente cliente:clin) {
-		System.out.println("Id : "+cliente.getId()+" / Nome : "+cliente.getNome());
-		
-	}
+	
 	
 }
 }
