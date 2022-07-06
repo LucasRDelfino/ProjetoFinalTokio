@@ -1,5 +1,7 @@
 package views;
 
+
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -23,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
 import connectionFactory.ConnectionFactory;
 import repository.ClienteDAO;
 
-public class TelaSelectCliente extends JFrame {
+public class TelaCorretorSelectDados extends JFrame {
 	Connection c;
 	private JPanel pn1;
 	private JLabel lb1,lb2,lb3;
@@ -34,9 +36,9 @@ public class TelaSelectCliente extends JFrame {
 	private PreparedStatement st;
 	private ResultSet rs;
 	ClienteDAO dao;
-	String sql = "SELECT * FROM T_AUTO_CLIENTE";
+	String sql = " SELECT C.NM_CLIENTE,S.NM_SERVICO, CA.NM_CATEGORIA FROM T_AUTO_DADOS D INNER JOIN T_AUTO_CLIENTE C ON D.CD_CLIENTE = C.CD_CLIENTE INNER JOIN T_AUTO_SERVICO S ON D.CD_SERVICO = S.CD_SERVICO INNER JOIN T_AUTO_CATEGORIA CA ON D.CD_CATEGORIA = CA.CD_CATEGORIA";
 	
-	public TelaSelectCliente() {
+	public TelaCorretorSelectDados () {
 		Componentes();
 		Eventos();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -105,7 +107,7 @@ public class TelaSelectCliente extends JFrame {
            
             st = c.prepareStatement(sql);
             rs= st.executeQuery();
-            DefaultTableModel tableModel = new DefaultTableModel(new String[] { "Nome","CPF","Telefone","Email","Endereço","Dt_nasc" }, 0) {
+            DefaultTableModel tableModel = new DefaultTableModel(new String[] { "Nome Cliente","Nome Serviço","Nome Categoria"}, 0) {
                 public boolean isCellEditable(int row, int col) {
                     return false;
                 }
@@ -137,23 +139,25 @@ public class TelaSelectCliente extends JFrame {
             System.out.println(erro);
         }
         
-    	voltar.addActionListener(new ActionListener() {
+        voltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 //Muda de Tela
 				 new TelaCorretor().setVisible(true);				
 				  setVisible(false);
-			
+				 
 			
 				}
-			 				
+			 
+		
+			
+		
 		});
-	
     }
 
 	
 
 	public static void main(String[] args) {
-		new TelaSelectCliente();	
+		new TelaCorretorSelectDados();	
 		
 		
 	}

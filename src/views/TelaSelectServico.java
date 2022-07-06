@@ -2,7 +2,9 @@ package views;
 
 	import java.awt.Color;
 	import java.awt.Font;
-	import java.sql.Connection;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
 	import java.sql.PreparedStatement;
 	import java.sql.ResultSet;
 	import java.sql.SQLException;
@@ -39,7 +41,7 @@ package views;
 			Componentes();
 			Eventos();
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			setVisible(false);
+			setVisible(true);
 			setLocationRelativeTo(null);
 			setBounds(0,0,1080,720);
 			
@@ -75,6 +77,13 @@ package views;
 			add(scrollTable);
 			scrollTable.setBackground(Color.green);
 			
+			voltar = new JButton("Voltar");
+			voltar.setBounds(120, 600, 150, 55);
+			voltar.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 13) );
+			add(voltar);
+			voltar.setBackground(verde);
+			voltar.setForeground(Color.white);	
+		
 			
 			//Imagem de fundo
 			fundo = new ImageIcon("imgs/fundo.jpg");			
@@ -128,8 +137,24 @@ package views;
 	        } catch (SQLException erro) {
 	            System.out.println(erro);
 	        }
-	    }
-
+	        voltar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					 //Muda de Tela
+					 new TelaCorretor().setVisible(true);				
+					  setVisible(false);
+					 
+				
+					}
+				 
+			
+				
+			
+			});
+	        
+		}
+				   
+	    
+		
 		
 
 		public static void main(String[] args) {

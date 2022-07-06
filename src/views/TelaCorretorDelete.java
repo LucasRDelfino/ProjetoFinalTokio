@@ -5,38 +5,46 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.Scrollable;
 import javax.swing.table.DefaultTableModel;
 
 import connectionFactory.ConnectionFactory;
 import repository.ClienteDAO;
+import model.Cliente;
+import repository.ClienteDAO;
 
-public class TelaSelectCliente extends JFrame {
-	Connection c;
+public class TelaCorretorDelete extends JFrame {
 	private JPanel pn1;
-	private JLabel lb1,lb2,lb3;
-	private JButton voltar;
+	private JLabel lb1,lb2,lb3,lb4,lb5,lb6,lb7,lb8;
+	private JButton voltar,deletar;
 	private ImageIcon logo,logo2,fundo,teste;
-	private JScrollPane scrollTable;
-	private JTable table;
+	private JTextField id;
+	String sql = "SELECT * FROM limateriais";
+	private int rs2;
 	private PreparedStatement st;
 	private ResultSet rs;
 	ClienteDAO dao;
-	String sql = "SELECT * FROM T_AUTO_CLIENTE";
 	
-	public TelaSelectCliente() {
+	
+	public TelaCorretorDelete() {
 		Componentes();
 		Eventos();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -59,7 +67,7 @@ public class TelaSelectCliente extends JFrame {
 		add(lb1);		
 		
 		//TITULO
-		lb2 = new JLabel ("Tabela Clientes");
+		lb2 = new JLabel ("DELETAR CLIENTE");
 		lb2.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 41) );
 		lb2.setForeground(verde);
 		lb2.setBounds(420,10,400,100);
@@ -71,10 +79,29 @@ public class TelaSelectCliente extends JFrame {
 		pn1.setBackground(Color.WHITE);
 		add(pn1);
 		
-		scrollTable = new JScrollPane();
-		scrollTable.setBounds(130, 200, 815, 383);
-		add(scrollTable);
-		scrollTable.setBackground(Color.green);
+		//TextFields
+		lb4 = new JLabel("Digite o código do cliente:");
+		lb4.setBounds(185,300,500,50);
+	    lb4.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 15) );
+	    lb4.setForeground(Color.decode("#1E5128"));
+		add(lb4);
+		
+		
+		
+		id = new JTextField();
+		id.setBounds(460,312, 150, 30);
+		id.setFont(new Font("Arial", Font.BOLD, 16));
+		id.setForeground(Color.BLACK);
+		add(id);	
+		
+			
+			
+		deletar = new JButton("Deletar");
+		deletar.setBounds(460, 500, 150, 55);
+		deletar.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 13) );
+		add(deletar);
+		deletar.setBackground(verde);
+		deletar.setForeground(Color.white);
 		
 		voltar = new JButton("Voltar");
 		voltar.setBounds(120, 600, 150, 55);
@@ -91,69 +118,47 @@ public class TelaSelectCliente extends JFrame {
 		lb3.setVisible(true);
 		add(lb3);
 		
-		c = new ConnectionFactory().conectar();
-		executarTabela(sql);
-	}
-	
-	public void Eventos() {
-	
 		
 	}
 	
-	public void executarTabela(String sql) {
-        try {
-           
-            st = c.prepareStatement(sql);
-            rs= st.executeQuery();
-            DefaultTableModel tableModel = new DefaultTableModel(new String[] { "Nome","CPF","Telefone","Email","Endereço","Dt_nasc" }, 0) {
-                public boolean isCellEditable(int row, int col) {
-                    return false;
-                }
-            };
-            int qtdeColunas = rs.getMetaData().getColumnCount();
-            for (int indice = 1; indice <= qtdeColunas; indice++) {
-//                tableModel.addColumn(resultado.getMetaData().getColumnName(indice));
-            }
-            table = new JTable(tableModel);
-            DefaultTableModel dtm = (DefaultTableModel) table.getModel();	
-
-            while (rs.next()) {
-                try {
-                    String[] dados = new String[qtdeColunas];
-                    for (int i = 1; i <= qtdeColunas; i++) {
-                        dados[i - 1] = rs.getString(i);
-                    }
-                    dtm.addRow(dados);
-                    System.out.print("");
-                } catch (SQLException erro) {
-                    System.out.println(erro);
-                }
-                scrollTable.setViewportView(table);
-            }
-
-            rs.close();
-            st.close();
-        } catch (SQLException erro) {
-            System.out.println(erro);
-        }
-        
-    	voltar.addActionListener(new ActionListener() {
+	public void Eventos() {
+		deletar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+				ClienteDAO dao = new ClienteDAO();		
+                  
+            
+              
+             	try {
+					dao.delete(Long.parseLong(id.getText()));
+					JOptionPane.showMessageDialog(null,"Conta Deletada");
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null,"Erro no cadastro");
+				}
+                              
+			}
+			});
+			voltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 //Muda de Tela
 				 new TelaCorretor().setVisible(true);				
 				  setVisible(false);
-			
+				 
 			
 				}
-			 				
+			 
+		
+			
+		
 		});
 	
-    }
-
+		
+	}
 	
-
+	
 	public static void main(String[] args) {
-		new TelaSelectCliente();	
+		new TelaCorretorDelete();	
 		
 		
 	}

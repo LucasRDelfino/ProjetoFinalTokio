@@ -12,7 +12,7 @@ import java.io.*;
 public class TelaCorretor extends JFrame{
 	private JPanel pn1;
 	private JLabel lb1,lb2,lb3,lb4,lb5,lb6,lb7,lb8,lb9,lb10;
-	private JButton bt1,bt2,bt3,bt4,bt5,bt6;
+	private JButton bt1,bt2,bt3,bt4,bt5,bt6,voltar;
 	private ImageIcon logo,logo2,fundo,teste;
 	
 
@@ -66,39 +66,39 @@ public class TelaCorretor extends JFrame{
 		lb4.setForeground(verde);
 		add(lb4);
 		
-		lb5 = new JLabel ("1 - Descobrir CPF do cliente");
-		lb5.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 22) );
-		lb5.setBounds(30, 410 ,540 , 250);
+		lb5 = new JLabel ("1 - Seleciona a tabela clientes");
+		lb5.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 20) );
+		lb5.setBounds(250, 410 ,540 , 250);
 		lb5.setForeground(verde);
 		add(lb5);	
 		
-		lb6 = new JLabel ("2 - Descobrir serviço do cliente");
-		lb6.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 22) );
-		lb6.setBounds(30, 460 ,540 , 250);
+		lb6 = new JLabel ("2 - Seleciona a tabela serviços");
+		lb6.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 20) );
+		lb6.setBounds(250, 460 ,540 , 250);
 		lb6.setForeground(verde);
 		add(lb6);	
 		
-		lb7 = new JLabel ("3 - Descobrir categoria do cliente");
-		lb7.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 22) );
-		lb7.setBounds(30, 510 ,540 , 250);
+		lb7 = new JLabel ("3 - Seleciona a tabela categorias");
+		lb7.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 20) );
+		lb7.setBounds(250, 510 ,540 , 250);
 		lb7.setForeground(verde);
 		add(lb7);	
 		
-		lb8 = new JLabel ("4 - Descobrir endereço do cliente");
-		lb8.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 22) );
-		lb8.setBounds(550, 410 ,540 , 250);
+		lb8 = new JLabel ("4 - Seleciona o serviço do cliente");
+		lb8.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 20) );
+		lb8.setBounds(630, 410 ,540 , 250);
 		lb8.setForeground(verde);
 		add(lb8);	
 		
-		lb9 = new JLabel ("5 - Descobrir categoria do cliente");
-		lb9.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 22) );
-		lb9.setBounds(550 , 460 ,540 , 250);
+		lb9 = new JLabel ("5 - Deleta um cliente da base de dados");
+		lb9.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 20) );
+		lb9.setBounds(630 , 460 ,540 , 250);
 		lb9.setForeground(verde);
 		add(lb9);	
 	
-		lb10 = new JLabel ("6 - Descobrir ID do cliente");
-		lb10.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 22) );
-		lb10.setBounds(550, 510 ,540 , 250);
+		lb10 = new JLabel ("6 - Atualiza o serviço/categoria do cliente");
+		lb10.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 20) );
+		lb10.setBounds(630, 510 ,540 , 250);
 		lb10.setForeground(verde);
 		add(lb10);	
 		
@@ -126,28 +126,33 @@ public class TelaCorretor extends JFrame{
 		bt3.setBackground(verde);
 		bt3.setForeground(Color.white);
 		
-		bt4 = new JButton("4 - Endereço");
+		bt4 = new JButton("4 - Cat/Serviço");
 		bt4.setBounds(150, 370, 150, 75);
 		bt4.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 13) );
 		add(bt4);
 		bt4.setBackground(verde);
 		bt4.setForeground(Color.white);
 		
-		bt5 = new JButton("5 - Cat/Serviço");
+		bt5 = new JButton("5 - DELETAR ");
 		bt5.setBounds(450, 370, 150, 75);
 		bt5.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 13) );
 		add(bt5);
 		bt5.setBackground(verde);
 		bt5.setForeground(Color.white);
 		
-		bt6 = new JButton("6 - Id Cliente");
+		bt6 = new JButton("6 - ATUALIZAR");
 		bt6.setBounds(750, 370, 150, 75);
 		bt6.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 13) );
 		add(bt6);
 		bt6.setBackground(verde);
 		bt6.setForeground(Color.white);
 		
-		
+		voltar = new JButton("Voltar");
+		voltar.setBounds(50, 570, 150, 55);
+		voltar.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 13) );
+		add(voltar);
+		voltar.setBackground(verde);
+		voltar.setForeground(Color.white);	
 		
 				
 		//Imagem de fundo
@@ -192,7 +197,50 @@ public class TelaCorretor extends JFrame{
 			}
 		});
 		
+		bt4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 //Muda de Tela
+				  new TelaCorretorSelectDados().setVisible(true);				
+				  setVisible(false);
+				 
+			
+				
+			}
+		});
+		bt5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 //Muda de Tela
+				  new TelaCorretorDelete().setVisible(true);				
+				  setVisible(false);
+				 
+			
+				
+			}
+		});
+		bt6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 //Muda de Tela
+				  new TelaCorretorUpdateDados().setVisible(true);				
+				  setVisible(false);
+				 
+			
+				
+			}
+		});
 		
+		voltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 //Muda de Tela
+				 new TelaInicial().setVisible(true);				
+				  setVisible(false);
+				 
+			
+				}
+			 
+		
+			
+		
+		});
 	}
 
 

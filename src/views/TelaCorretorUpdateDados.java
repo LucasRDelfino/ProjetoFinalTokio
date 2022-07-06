@@ -2,6 +2,8 @@ package views;
 
 
 
+
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -30,15 +32,17 @@ import javax.swing.table.DefaultTableModel;
 
 import connectionFactory.ConnectionFactory;
 import repository.ClienteDAO;
+import repository.DadosDAO;
 import model.Cliente;
+import model.Dados;
 import repository.ClienteDAO;
 
-public class TelaUpdateDadosCliente extends JFrame {
+public class TelaCorretorUpdateDados extends JFrame {
 	private JPanel pn1;
 	private JLabel lb1,lb2,lb3,lb4,lb5,lb6,lb7,lb8;
 	private JButton voltar,atualizar;
 	private ImageIcon logo,logo2,fundo,teste;
-	private JTextField nome,cpf,telefone,email,endereco;
+	private JTextField cliente,servico,categoria;
 	String sql = "SELECT * FROM limateriais";
 	private int rs2;
 	private PreparedStatement st;
@@ -46,7 +50,7 @@ public class TelaUpdateDadosCliente extends JFrame {
 	ClienteDAO dao;
 	
 	
-	public TelaUpdateDadosCliente() {
+	public TelaCorretorUpdateDados() {
 		Componentes();
 		Eventos();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -69,10 +73,10 @@ public class TelaUpdateDadosCliente extends JFrame {
 		add(lb1);		
 		
 		//TITULO
-		lb2 = new JLabel ("ATUALIZAR DADOS");
+		lb2 = new JLabel ("ATUALIZAR DADOS CLIENTE");
 		lb2.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 41) );
 		lb2.setForeground(verde);
-		lb2.setBounds(420,10,600,100);
+		lb2.setBounds(420,10,800,100);
 		add(lb2);
 		
 		//Aba de cima
@@ -82,76 +86,47 @@ public class TelaUpdateDadosCliente extends JFrame {
 		add(pn1);
 		
 		//TextFields
-		lb4 = new JLabel("Digite seu CPF:"  );
-		lb4.setBounds(120,200,500,50);
+		lb4 = new JLabel("Digite o código do cliente:"  );
+		lb4.setBounds(100,200,500,50);
 	    lb4.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 15) );
 	    lb4.setForeground(Color.decode("#1E5128"));
 		add(lb4);
 		
 		
-		lb3 = new JLabel("Novo Nome:");
-		lb3.setBounds(140,290,500,50);
+		lb3 = new JLabel("Novo Serviço(Código):");
+		lb3.setBounds(120,290,500,50);
 		lb3.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 15) );
 	    lb3.setForeground(Color.decode("#1E5128"));
 	    add(lb3);
 		
 		
-		lb5 = new JLabel("Novo Telefone:");
-		lb5.setBounds(470,290,500,50);
+		lb5 = new JLabel("Novo Categoria(Código):");
+		lb5.setBounds(550,290,500,50);
 	    lb5.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 15) );
 	    lb5.setForeground(Color.decode("#1E5128"));
 		add(lb5);
 		
-		
-		lb6 = new JLabel("Novo Email:");
-		lb6.setBounds(470,400,500,50);
-	    lb6.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 15) );
-	    lb6.setForeground(Color.decode("#1E5128"));
-		add(lb6);
+	
 				
+		cliente = new JTextField();
+		cliente .setBounds(315,210, 120, 30);
+		cliente .setFont(new Font("Arial", Font.BOLD, 16));
+		cliente .setForeground(Color.BLACK);
+		add(cliente);	
 		
+		servico = new JTextField();
+		servico.setBounds(310,300, 120, 30);
+		servico.setFont(new Font("Arial", Font.BOLD, 16));
+		servico.setForeground(Color.BLACK);
+		add(servico);	
 		
-		lb7 = new JLabel("Novo CEP:");
-		lb7.setBounds(120,400,500,50);
-	    lb7.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 15) );
-	    lb7.setForeground(Color.decode("#1E5128"));
-		add(lb7);
-		
-		
-		
-		cpf = new JTextField();
-		cpf.setBounds(260,210, 120, 30);
-		cpf.setFont(new Font("Arial", Font.BOLD, 16));
-		cpf.setForeground(Color.BLACK);
-		add(cpf);	
-		
-		nome = new JTextField();
-		nome.setBounds(260,300, 120, 30);
-		nome.setFont(new Font("Arial", Font.BOLD, 16));
-		nome.setForeground(Color.BLACK);
-		add(nome);	
-		
-		telefone = new JTextField();
-		telefone.setBounds(600,300, 120, 30);
-		telefone.setFont(new Font("Arial", Font.BOLD, 16));
-		telefone.setForeground(Color.BLACK);
-		add(telefone);	
-		
-		email = new JTextField();
-		email.setBounds(600,410, 120, 30);
-		email.setFont(new Font("Arial", Font.BOLD, 16));
-		email.setForeground(Color.BLACK);
-		add(email);	
-		
+		categoria = new JTextField();
+		categoria.setBounds(750,300, 120, 30);
+		categoria.setFont(new Font("Arial", Font.BOLD, 16));
+		categoria.setForeground(Color.BLACK);
+		add(categoria);	
+				
 			
-		endereco = new JTextField();
-		endereco.setBounds(260,410, 120, 30);
-		endereco.setFont(new Font("Arial", Font.BOLD, 16));
-		endereco.setForeground(Color.BLACK);
-		add(endereco);	
-		
-		
-		
 		atualizar = new JButton("Atualizar");
 		atualizar.setBounds(460, 500, 150, 55);
 		atualizar.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 13) );
@@ -167,6 +142,7 @@ public class TelaUpdateDadosCliente extends JFrame {
 		voltar.setForeground(Color.white);	
 		
 		
+		
 		//Imagem de fundo
 		fundo = new ImageIcon("imgs/fundo.jpg");			
 		lb3 = new JLabel (fundo);
@@ -180,17 +156,14 @@ public class TelaUpdateDadosCliente extends JFrame {
 	public void Eventos() {
 		atualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
-				ClienteDAO dao = new ClienteDAO();		
-                Cliente bruno = new Cliente(); 
-                
-               
-            	
+				DadosDAO dao = new DadosDAO();		
+                Dados bruno = new Dados(); 
+                              
        
-            	bruno.setNome(nome.getText());
-               	bruno.setTelefone(Long. parseLong(telefone.getText()));
-              	bruno.setEmail(email.getText());
-              	bruno.setCep(Long. parseLong(endereco.getText()));
-              	bruno.setCpf(Long.parseLong(cpf.getText()));
+            	bruno.setCliente(Long.parseLong(cliente.getText()));
+               	bruno.setServico(Long.parseLong(servico.getText()));
+            	bruno.setCategoria(Long.parseLong(categoria.getText()));
+              	
              	try {
 					dao.update(bruno);
 					JOptionPane.showMessageDialog(null,"Conta Atualizada");
@@ -202,10 +175,11 @@ public class TelaUpdateDadosCliente extends JFrame {
                               
 			}
 			});
+		
 		voltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 //Muda de Tela
-				 new TelaCliente().setVisible(true);				
+				 new TelaCorretor().setVisible(true);				
 				  setVisible(false);
 				 
 			
@@ -215,11 +189,13 @@ public class TelaUpdateDadosCliente extends JFrame {
 			
 		
 		});
+	
+		
 	}
 	
 	
 	public static void main(String[] args) {
-		new TelaUpdateDadosCliente();	
+		new TelaCorretorUpdateDados();	
 		
 		
 	}

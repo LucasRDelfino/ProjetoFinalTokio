@@ -7,8 +7,8 @@ import javax.swing.JOptionPane;
 public class ConnectionFactory {
 	
 	private String schema = "jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL";
-	private String user = "TM_LUCAS_DILFINO";
-	private String password = "050705";
+	private String user = "TM_DAVID_BRAGA";
+	private String password = "261204";
 	
 	public Connection conectar () {
 		try {

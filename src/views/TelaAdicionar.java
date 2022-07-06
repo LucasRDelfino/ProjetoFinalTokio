@@ -17,6 +17,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
@@ -108,7 +109,7 @@ public class TelaAdicionar extends JFrame {
 				
 		
 		
-		lb7 = new JLabel("Endereço:");
+		lb7 = new JLabel("CEP:");
 		lb7.setBounds(170,350,500,50);
 	    lb7.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 15) );
 	    lb7.setForeground(Color.decode("#1E5128"));
@@ -164,6 +165,13 @@ public class TelaAdicionar extends JFrame {
 		adicionar.setBackground(verde);
 		adicionar.setForeground(Color.white);
 		
+		voltar = new JButton("Voltar");
+		voltar.setBounds(120, 600, 150, 55);
+		voltar.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 13) );
+		add(voltar);
+		voltar.setBackground(verde);
+		voltar.setForeground(Color.white);	
+		
 		
 		
 		//Imagem de fundo
@@ -189,19 +197,33 @@ public class TelaAdicionar extends JFrame {
             	bruno.setNome(nome.getText());
             	bruno.setCpf(Long.parseLong(cpf.getText()));
               	bruno.setTelefone(Long. parseLong(telefone.getText()));
-              	bruno.setEmail(cpf.getText());
-              	bruno.setEndereco(endereco.getText());
+              	bruno.setEmail(email.getText());
+              	bruno.setCep(Long. parseLong(endereco.getText()));
               	bruno.setIdade(Integer.parseInt(idade.getText()));
              	try {
 					dao.insert(bruno);
-					System.out.println("Conta Criada");
+					JOptionPane.showMessageDialog(null,"Conta Criado");
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-					System.out.println("Erro no cadastro");
+					JOptionPane.showMessageDialog(null,"Erro no cadastro");
 				}
                               
 			}
+			});
+		
+			voltar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					 //Muda de Tela
+					 new TelaCliente().setVisible(true);				
+					  setVisible(false);
+					 
+				
+					}
+				 
+			
+				
+			
 			});
 		
 	}

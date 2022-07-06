@@ -25,7 +25,7 @@ public class Teste {
 	bruno.setTelefone(5511913131311L);
 	bruno.setCpf(52641212811L);
 //	bruno.setDatanasc(data);
-	bruno.setEndereco("Avenida Yervant");
+	bruno.setCep(224242424);
 	
 	
 	

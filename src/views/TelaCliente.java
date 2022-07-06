@@ -13,7 +13,7 @@ import java.io.*;
 public class TelaCliente extends JFrame{
 	private JPanel pn1;
 	private JLabel lb1,lb2,lb3,lb4,lb5,lb6,lb7,lb8,lb9,lb10;
-	private JButton bt1,bt2,bt3,bt4,bt5,bt6;
+	private JButton bt1,bt2,bt3,bt4,bt5,bt6,voltar;
 	private ImageIcon logo,logo2,fundo,teste;
 	
 
@@ -63,27 +63,32 @@ public class TelaCliente extends JFrame{
 		//Frase		
 		lb4 = new JLabel ("Clique em qual serviço deseja usar : ");
 		lb4.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 31) );
-		lb4.setBounds(15, 20 ,550 , 250);
+		lb4.setBounds(15, 50 ,750 , 250);
 		lb4.setForeground(verde);
 		add(lb4);
 	
 		
 		//botões
 		bt1 = new JButton("1 - CADASTRO");
-		bt1.setBounds(250, 320, 150, 75);
+		bt1.setBounds(250, 320, 160, 75);
 		bt1.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 13) );
 		add(bt1);
 		bt1.setBackground(verde);
 		bt1.setForeground(Color.white);
 		
-		bt2 = new JButton("2 - MUDAR SENHA");
-		bt2.setBounds(550, 320, 150, 75);
+		bt2 = new JButton("2 - ATUALIZAR");
+		bt2.setBounds(550, 320, 160, 75);
 		bt2.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 13) );
 		add(bt2);
 		bt2.setBackground(verde);
 		bt2.setForeground(Color.white);
 		
-				
+		voltar = new JButton("Voltar");
+		voltar.setBounds(120, 600, 150, 55);
+		voltar.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 13) );
+		add(voltar);
+		voltar.setBackground(verde);
+		voltar.setForeground(Color.white);		
 		
 				
 		//Imagem de fundo
@@ -111,6 +116,19 @@ public class TelaCliente extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				 //Muda de Tela
 				 new TelaUpdateDadosCliente().setVisible(true);				
+				  setVisible(false);
+				 
+			
+				}
+				 
+			
+				
+			
+		});
+		voltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 //Muda de Tela
+				 new TelaInicial().setVisible(true);				
 				  setVisible(false);
 				 
 			

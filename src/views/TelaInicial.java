@@ -61,9 +61,9 @@ public class TelaInicial extends JFrame{
 		add(pn1);
 		
 		//Frase		
-		lb4 = new JLabel ("Clique em um usuario : ");
+		lb4 = new JLabel ("Clique no seu tipo de conta : ");
 		lb4.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 31) );
-		lb4.setBounds(15, 20 ,550 , 250);
+		lb4.setBounds(15, 50 ,550 , 250);
 		lb4.setForeground(verde);
 		add(lb4);
 	
