@@ -24,7 +24,7 @@ public class ClienteDAO {
 	
 	public void insert(Cliente cliente) throws SQLException {
 		String sql = "insert into T_AUTO_CLIENTE (nm_cliente,nr_cpf,nr_telefone,"
-				+ "ds_email,ds_nascimento,ds_endereco) values (?,?,?,?,?,?)";
+				+ "ds_email,ds_endereco,nr_idade) values (?,?,?,?,?,?)";
 		PreparedStatement stmt = conexao.prepareStatement(sql);
 		
 		
@@ -32,8 +32,9 @@ public class ClienteDAO {
 		stmt.setLong(2,cliente.getCpf());
 		stmt.setLong(3,cliente.getTelefone());
 		stmt.setString(4,cliente.getEmail());
-		stmt.setDate(5,cliente.getDatanasc());
-		stmt.setString(6,cliente.getEndereco());
+		stmt.setString(5,cliente.getEndereco());
+		stmt.setInt(6,cliente.getIdade());
+		
 		
 		stmt.execute();
 		stmt.close();
@@ -51,7 +52,7 @@ public class ClienteDAO {
 			cliente.setNome(rs.getString("nm_cliente"));
 			cliente.setEmail(rs.getString("ds_email"));
 			cliente. setTelefone(rs.getLong("nr_telefone"));
-			cliente.setDatanasc(rs.getDate("dt_nascimento"));
+			cliente.setIdade(rs.getInt("dt_nascimento"));
 			cliente.setEndereco(rs.getString("ds_endereco"));
 			cliente. setCpf(rs.getLong("nr_cpf"));
 			clientes.add(cliente);
@@ -62,6 +63,17 @@ public class ClienteDAO {
 			return clientes;
 	}
 	
+	public void update(Cliente usuario) throws SQLException {
+		String sql = "update t_auto_cliente set nm_cliente=?,nr_teleFone=?,ds_email=?,ds_endereco where nr_cpf=?";
+		PreparedStatement stmt = conexao.prepareStatement(sql);
+		stmt.setString(1, usuario.getNome());
+		stmt.setLong(2, usuario.getTelefone());
+		stmt.setString(3, usuario.getEmail());
+		stmt.setString(4, usuario.getEndereco());
+		stmt.setLong(5, usuario.getCpf());
+		stmt.execute();
+		stmt.close();
+	}
 	
 	
 }

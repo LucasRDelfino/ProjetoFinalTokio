@@ -23,7 +23,7 @@ public class Teste {
 	bruno.setEmail("brunoaquino@gmail.com");
 	bruno.setTelefone(5511913131311L);
 	bruno.setCpf(52641212811L);
-	bruno.setDatanasc(data);
+//	bruno.setDatanasc(data);
 	bruno.setEndereco("Avenida Yervant");
 	
 	

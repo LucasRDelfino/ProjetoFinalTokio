@@ -1,5 +1,7 @@
 package views;
 
+
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -30,12 +32,12 @@ import repository.ClienteDAO;
 import model.Cliente;
 import repository.ClienteDAO;
 
-public class TelaAdicionar extends JFrame {
+public class TelaUpdateDadosCliente extends JFrame {
 	private JPanel pn1;
 	private JLabel lb1,lb2,lb3,lb4,lb5,lb6,lb7,lb8;
-	private JButton voltar,adicionar;
+	private JButton voltar,atualizar;
 	private ImageIcon logo,logo2,fundo,teste;
-	private JTextField nome,cpf,telefone,email,idade,endereco;
+	private JTextField nome,cpf,telefone,email,endereco;
 	String sql = "SELECT * FROM limateriais";
 	private int rs2;
 	private PreparedStatement st;
@@ -43,7 +45,7 @@ public class TelaAdicionar extends JFrame {
 	ClienteDAO dao;
 	
 	
-	public TelaAdicionar() {
+	public TelaUpdateDadosCliente() {
 		Componentes();
 		Eventos();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,7 +68,7 @@ public class TelaAdicionar extends JFrame {
 		add(lb1);		
 		
 		//TITULO
-		lb2 = new JLabel ("CADASTRO");
+		lb2 = new JLabel ("ATUALIZAR DADOS");
 		lb2.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 41) );
 		lb2.setForeground(verde);
 		lb2.setBounds(420,10,400,100);
@@ -79,91 +81,82 @@ public class TelaAdicionar extends JFrame {
 		add(pn1);
 		
 		//TextFields
-		lb4 = new JLabel("Nome Completo:");
-		lb4.setBounds(107,200,500,50);
+		lb4 = new JLabel("Digite seu CPF:"  );
+		lb4.setBounds(120,200,500,50);
 	    lb4.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 15) );
 	    lb4.setForeground(Color.decode("#1E5128"));
 		add(lb4);
 		
 		
-		lb3 = new JLabel("CPF:");
-		lb3.setBounds(460,200,500,50);
-	    lb3.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 15) );
+		lb3 = new JLabel("Novo Nome:");
+		lb3.setBounds(140,290,500,50);
+		lb3.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 15) );
 	    lb3.setForeground(Color.decode("#1E5128"));
-		add(lb3);
+	    add(lb3);
 		
 		
-		lb5 = new JLabel("Telefone:");
-		lb5.setBounds(695,200,500,50);
+		lb5 = new JLabel("Novo Telefone:");
+		lb5.setBounds(470,290,500,50);
 	    lb5.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 15) );
 	    lb5.setForeground(Color.decode("#1E5128"));
 		add(lb5);
 		
 		
-		lb6 = new JLabel("Email:");
-		lb6.setBounds(450,350,500,50);
+		lb6 = new JLabel("Novo Email:");
+		lb6.setBounds(470,400,500,50);
 	    lb6.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 15) );
 	    lb6.setForeground(Color.decode("#1E5128"));
 		add(lb6);
 				
 		
 		
-		lb7 = new JLabel("Endereço:");
-		lb7.setBounds(170,350,500,50);
+		lb7 = new JLabel("Novo Endereço:");
+		lb7.setBounds(120,400,500,50);
 	    lb7.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 15) );
 	    lb7.setForeground(Color.decode("#1E5128"));
 		add(lb7);
 		
-		lb8 = new JLabel("Idade:");
-		lb8.setBounds(695,350,500,50);
-	    lb8.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 15) );
-	    lb8.setForeground(Color.decode("#1E5128"));
-		add(lb8);
 		
-		nome = new JTextField();
-		nome.setBounds(260,210, 120, 30);
-		nome.setFont(new Font("Arial", Font.BOLD, 16));
-		nome.setForeground(Color.BLACK);
-		add(nome);	
 		
 		cpf = new JTextField();
-		cpf.setBounds(510,210, 120, 30);
+		cpf.setBounds(260,210, 120, 30);
 		cpf.setFont(new Font("Arial", Font.BOLD, 16));
 		cpf.setForeground(Color.BLACK);
 		add(cpf);	
 		
+		nome = new JTextField();
+		nome.setBounds(260,300, 120, 30);
+		nome.setFont(new Font("Arial", Font.BOLD, 16));
+		nome.setForeground(Color.BLACK);
+		add(nome);	
+		
 		telefone = new JTextField();
-		telefone.setBounds(780,210, 120, 30);
+		telefone.setBounds(600,300, 120, 30);
 		telefone.setFont(new Font("Arial", Font.BOLD, 16));
 		telefone.setForeground(Color.BLACK);
 		add(telefone);	
 		
 		email = new JTextField();
-		email.setBounds(510,360, 120, 30);
+		email.setBounds(600,410, 120, 30);
 		email.setFont(new Font("Arial", Font.BOLD, 16));
 		email.setForeground(Color.BLACK);
 		add(email);	
 		
 			
 		endereco = new JTextField();
-		endereco.setBounds(260,360, 120, 30);
+		endereco.setBounds(260,410, 120, 30);
 		endereco.setFont(new Font("Arial", Font.BOLD, 16));
 		endereco.setForeground(Color.BLACK);
 		add(endereco);	
 		
-		idade = new JTextField();
-		idade.setBounds(780,360, 120, 30);
-		idade.setFont(new Font("Arial", Font.BOLD, 16));
-		idade.setForeground(Color.BLACK);
-		add(idade);	
 		
-		adicionar = new JButton("Adicionar");
-		adicionar.setBounds(460, 500, 150, 55);
-		adicionar.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 13) );
-		add(adicionar);
-		adicionar.setBackground(verde);
-		adicionar.setForeground(Color.white);
 		
+		atualizar = new JButton("Atualizar");
+		atualizar.setBounds(460, 500, 150, 55);
+		atualizar.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 13) );
+		add(atualizar);
+		atualizar.setBackground(verde);
+		atualizar.setForeground(Color.white);
 		
 		
 		//Imagem de fundo
@@ -177,7 +170,7 @@ public class TelaAdicionar extends JFrame {
 	}
 	
 	public void Eventos() {
-		adicionar.addActionListener(new ActionListener() {
+		atualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 				ClienteDAO dao = new ClienteDAO();		
                 Cliente bruno = new Cliente(); 
@@ -191,7 +184,7 @@ public class TelaAdicionar extends JFrame {
               	bruno.setTelefone(Long. parseLong(telefone.getText()));
               	bruno.setEmail(cpf.getText());
               	bruno.setEndereco(endereco.getText());
-              	bruno.setIdade(Integer.parseInt(idade.getText()));
+              
              	try {
 					dao.insert(bruno);
 					System.out.println("Conta Criada");
@@ -208,7 +201,7 @@ public class TelaAdicionar extends JFrame {
 	
 	
 	public static void main(String[] args) {
-		new TelaAdicionar();	
+		new TelaUpdateDadosCliente();	
 		
 		
 	}

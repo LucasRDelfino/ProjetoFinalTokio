@@ -3,9 +3,10 @@ package model;
 import java.sql.Date;
 
 public class Cliente {
+	private int idade;
 	private long id,telefone,cpf;
 	private String nome,email,endereco ;
-	private Date datanasc;
+	
 
 
 	public Cliente() {
@@ -86,17 +87,19 @@ public class Cliente {
 
 
 
-	public Date getDatanasc() {
-		return datanasc;
+	public int getIdade() {
+		return idade;
 	}
 
 
 
-	public void setDatanasc(Date datanasc) {
-		this.datanasc = datanasc;
+	public void setIdade(int idade) {
+		this.idade = idade;
 	}
 
-	
+
+
+
 	
 
 }

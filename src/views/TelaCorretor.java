@@ -9,14 +9,14 @@ import java.io.*;
 
 
 
-public class TelaPrincipal extends JFrame{
+public class TelaCorretor extends JFrame{
 	private JPanel pn1;
 	private JLabel lb1,lb2,lb3,lb4,lb5,lb6,lb7,lb8,lb9,lb10;
 	private JButton bt1,bt2,bt3,bt4,bt5,bt6;
 	private ImageIcon logo,logo2,fundo,teste;
 	
 
-	public TelaPrincipal() {
+	public TelaCorretor() {
 		Componentes();
 		Eventos();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -163,7 +163,7 @@ public class TelaPrincipal extends JFrame{
 		bt1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 //Muda de Tela
-				  new TelaCliente().setVisible(true);				
+				  new TelaSelectCliente().setVisible(true);				
 				  setVisible(false);
 				 
 			
@@ -197,7 +197,7 @@ public class TelaPrincipal extends JFrame{
 
 
 	public static void main(String[] args) {
-		new TelaPrincipal();	
+		new TelaCorretor();	
 		
 		
 	}

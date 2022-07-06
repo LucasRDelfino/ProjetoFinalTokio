@@ -10,14 +10,14 @@ import java.io.*;
 
 
 
-public class TelaCliente extends JFrame{
+public class TelaInicial extends JFrame{
 	private JPanel pn1;
 	private JLabel lb1,lb2,lb3,lb4,lb5,lb6,lb7,lb8,lb9,lb10;
 	private JButton bt1,bt2,bt3,bt4,bt5,bt6;
 	private ImageIcon logo,logo2,fundo,teste;
 	
 
-	public TelaCliente() {
+	public TelaInicial() {
 		Componentes();
 		Eventos();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -48,7 +48,7 @@ public class TelaCliente extends JFrame{
 		add(lb1);		
 		
 		//TITULO
-		lb2 = new JLabel ("Painel do Cliente");
+		lb2 = new JLabel ("Página Incial");
 		lb2.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 41) );
 		lb2.setForeground(verde);
 		lb2.setBounds(420,10,400,100);
@@ -61,7 +61,7 @@ public class TelaCliente extends JFrame{
 		add(pn1);
 		
 		//Frase		
-		lb4 = new JLabel ("Clique em qual serviço deseja usar : ");
+		lb4 = new JLabel ("Clique em um usuario : ");
 		lb4.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 31) );
 		lb4.setBounds(15, 20 ,550 , 250);
 		lb4.setForeground(verde);
@@ -69,14 +69,14 @@ public class TelaCliente extends JFrame{
 	
 		
 		//botões
-		bt1 = new JButton("1 - CADASTRO");
+		bt1 = new JButton("1 - Cliente");
 		bt1.setBounds(250, 320, 150, 75);
 		bt1.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 13) );
 		add(bt1);
 		bt1.setBackground(verde);
 		bt1.setForeground(Color.white);
 		
-		bt2 = new JButton("2 - MUDAR SENHA");
+		bt2 = new JButton("2 - Corretor");
 		bt2.setBounds(550, 320, 150, 75);
 		bt2.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 13) );
 		add(bt2);
@@ -84,7 +84,6 @@ public class TelaCliente extends JFrame{
 		bt2.setForeground(Color.white);
 		
 				
-		
 				
 		//Imagem de fundo
 		fundo = new ImageIcon("imgs/fundo.jpg");			
@@ -99,7 +98,7 @@ public class TelaCliente extends JFrame{
 		bt1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 //Muda de Tela
-				  new TelaAdicionar().setVisible(true);				
+				  new TelaCliente().setVisible(true);				
 				  setVisible(false);
 				 
 			
@@ -110,15 +109,18 @@ public class TelaCliente extends JFrame{
 		bt2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 //Muda de Tela
-				 new TelaUpdateDadosCliente().setVisible(true);				
+				String user = JOptionPane.showInputDialog("Digite o usuario : ");
+				String password = JOptionPane.showInputDialog("Digite a senha : ");
+				if (user.equalsIgnoreCase("Lucas") && password.equalsIgnoreCase("lucas123")) {
+				 new TelaCorretor().setVisible(true);				
 				  setVisible(false);
-				 
-			
+				}else {
+					JOptionPane.showMessageDialog(null,"Usuário ou senha incorretos :(");
 				}
 				 
 			
 				
-			
+			}
 		});
 	
 		
@@ -126,7 +128,7 @@ public class TelaCliente extends JFrame{
 
 
 	public static void main(String[] args) {
-		new TelaCliente();	
+		new TelaInicial();	
 		
 		
 	}
