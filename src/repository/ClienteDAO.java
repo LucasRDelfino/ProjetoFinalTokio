@@ -64,7 +64,7 @@ public class ClienteDAO {
 	}
 	
 	public void update(Cliente usuario) throws SQLException {
-		String sql = "update t_auto_cliente set nm_cliente=?,nr_teleFone=?,ds_email=?,ds_endereco where nr_cpf=?";
+		String sql = "update t_auto_cliente set nm_cliente=?,nr_telefone=?,ds_email=?,ds_endereco=? where nr_cpf=?";
 		PreparedStatement stmt = conexao.prepareStatement(sql);
 		stmt.setString(1, usuario.getNome());
 		stmt.setLong(2, usuario.getTelefone());

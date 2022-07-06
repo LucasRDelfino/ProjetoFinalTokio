@@ -105,14 +105,14 @@ public class TelaCorretor extends JFrame{
 		
 		
 		//botões
-		bt1 = new JButton("1 - CPF");
+		bt1 = new JButton("1 - CLIENTES");
 		bt1.setBounds(150, 220, 150, 75);
 		bt1.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 13) );
 		add(bt1);
 		bt1.setBackground(verde);
 		bt1.setForeground(Color.white);
 		
-		bt2 = new JButton("2 - SERVIÇO");
+		bt2 = new JButton("2 - SERVIÇOS");
 		bt2.setBounds(450, 220, 150, 75);
 		bt2.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 13) );
 		add(bt2);
@@ -174,7 +174,7 @@ public class TelaCorretor extends JFrame{
 		bt2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 //Muda de Tela
-				  new TelaServico().setVisible(true);				
+				  new TelaSelectServico().setVisible(true);				
 				  setVisible(false);
 				 
 			
@@ -184,7 +184,7 @@ public class TelaCorretor extends JFrame{
 		bt3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 //Muda de Tela
-				  new TelaCategorias().setVisible(true);				
+				  new TelaSelectCategorias().setVisible(true);				
 				  setVisible(false);
 				 
 			

@@ -180,13 +180,12 @@ public class TelaUpdateDadosCliente extends JFrame {
             	
        
             	bruno.setNome(nome.getText());
-            	bruno.setCpf(Long.parseLong(cpf.getText()));
-              	bruno.setTelefone(Long. parseLong(telefone.getText()));
+               	bruno.setTelefone(Long. parseLong(telefone.getText()));
               	bruno.setEmail(cpf.getText());
               	bruno.setEndereco(endereco.getText());
-              
+              	bruno.setCpf(Long.parseLong(cpf.getText()));
              	try {
-					dao.insert(bruno);
+					dao.update(bruno);
 					System.out.println("Conta Criada");
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block

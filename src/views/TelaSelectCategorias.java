@@ -1,5 +1,6 @@
 package views;
 
+
 import java.awt.Color;
 import java.awt.Font;
 import java.sql.Connection;
@@ -20,8 +21,9 @@ import javax.swing.table.DefaultTableModel;
 
 import connectionFactory.ConnectionFactory;
 import repository.ClienteDAO;
+import repository.ServicoDAO;
 
-public class TelaServico extends JFrame {
+public class TelaSelectCategorias extends JFrame {
 	Connection c;
 	private JPanel pn1;
 	private JLabel lb1,lb2,lb3;
@@ -31,10 +33,10 @@ public class TelaServico extends JFrame {
 	private JTable table;
 	private PreparedStatement st;
 	private ResultSet rs;
-	ClienteDAO dao;
-	String sql = "SELECT * FROM T_AUTO_SERVIÇO";
+	ServicoDAO dao;
+	String sql = "select * from T_AUTO_CATEGORIA";
 	
-	public TelaServico() {
+	public TelaSelectCategorias() {
 		Componentes();
 		Eventos();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,7 +59,7 @@ public class TelaServico extends JFrame {
 		add(lb1);		
 		
 		//TITULO
-		lb2 = new JLabel ("Tabela Categorias");
+		lb2 = new JLabel ("Tabela Serviços");
 		lb2.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 41) );
 		lb2.setForeground(verde);
 		lb2.setBounds(420,10,400,100);
@@ -132,7 +134,7 @@ public class TelaServico extends JFrame {
 	
 
 	public static void main(String[] args) {
-		new TelaServico();	
+		new TelaSelectCategorias();	
 		
 		
 	}
@@ -140,3 +142,4 @@ public class TelaServico extends JFrame {
 	
 
 }
+

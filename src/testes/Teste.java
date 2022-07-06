@@ -9,10 +9,11 @@ import java.util.List;
 
 import model.Cliente;
 import repository.ClienteDAO;
+import repository.ServicoDAO;
 
 public class Teste {
 	public static void main(String[] args) {
-	ClienteDAO dao = new ClienteDAO();
+	ServicoDAO dao = new ServicoDAO();
 	Cliente bruno = new Cliente();
 	
 	Calendar hoje = Calendar.getInstance();
@@ -29,7 +30,7 @@ public class Teste {
 	
 	
 	try {
-		dao.insert(bruno);
+		dao.selectServ();
 			
 	} catch (SQLException e) {
 		e.printStackTrace();
