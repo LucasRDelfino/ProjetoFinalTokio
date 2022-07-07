@@ -42,7 +42,7 @@ public class TelaSelectCategorias extends JFrame {
 		Componentes();
 		Eventos();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setVisible(true);
+		setVisible(false);
 		setLocationRelativeTo(null);
 		setBounds(0,0,1080,720);
 		
@@ -61,7 +61,7 @@ public class TelaSelectCategorias extends JFrame {
 		add(lb1);		
 		
 		//TITULO
-		lb2 = new JLabel ("Tabela Serviços");
+		lb2 = new JLabel ("Tabela Categorias");
 		lb2.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 41) );
 		lb2.setForeground(verde);
 		lb2.setBounds(420,10,400,100);

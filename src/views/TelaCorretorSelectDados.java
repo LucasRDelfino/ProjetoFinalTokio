@@ -36,13 +36,13 @@ public class TelaCorretorSelectDados extends JFrame {
 	private PreparedStatement st;
 	private ResultSet rs;
 	ClienteDAO dao;
-	String sql = " SELECT C.NM_CLIENTE,S.NM_SERVICO, CA.NM_CATEGORIA FROM T_AUTO_DADOS D INNER JOIN T_AUTO_CLIENTE C ON D.CD_CLIENTE = C.CD_CLIENTE INNER JOIN T_AUTO_SERVICO S ON D.CD_SERVICO = S.CD_SERVICO INNER JOIN T_AUTO_CATEGORIA CA ON D.CD_CATEGORIA = CA.CD_CATEGORIA";
+	String sql = " SELECT C.NM_CLIENTE,S.NM_SERVICO, CA.NM_CATEGORIA FROM T_AUTO_DADO D INNER JOIN T_AUTO_CLIENTE C ON D.CD_CLIENTE = C.CD_CLIENTE INNER JOIN T_AUTO_SERVICO S ON D.CD_SERVICO = S.CD_SERVICO INNER JOIN T_AUTO_CATEGORIA CA ON D.CD_CATEGORIA = CA.CD_CATEGORIA";
 	
 	public TelaCorretorSelectDados () {
 		Componentes();
 		Eventos();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setVisible(true);
+		setVisible(false);
 		setLocationRelativeTo(null);
 		setBounds(0,0,1080,720);
 		
@@ -61,10 +61,10 @@ public class TelaCorretorSelectDados extends JFrame {
 		add(lb1);		
 		
 		//TITULO
-		lb2 = new JLabel ("Tabela Clientes");
+		lb2 = new JLabel ("Tabela Serviço do Cliente");
 		lb2.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 41) );
 		lb2.setForeground(verde);
-		lb2.setBounds(420,10,400,100);
+		lb2.setBounds(320,10,600,100);
 		add(lb2);
 		
 		//Aba de cima

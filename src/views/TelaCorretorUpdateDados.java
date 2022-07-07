@@ -19,6 +19,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -43,6 +44,7 @@ public class TelaCorretorUpdateDados extends JFrame {
 	private JButton voltar,atualizar;
 	private ImageIcon logo,logo2,fundo,teste;
 	private JTextField cliente,servico,categoria;
+	private JComboBox c1,c2;
 	String sql = "SELECT * FROM limateriais";
 	private int rs2;
 	private PreparedStatement st;
@@ -54,7 +56,7 @@ public class TelaCorretorUpdateDados extends JFrame {
 		Componentes();
 		Eventos();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setVisible(true);
+		setVisible(false);
 		setLocationRelativeTo(null);
 		setBounds(0,0,1080,720);
 		
@@ -93,15 +95,15 @@ public class TelaCorretorUpdateDados extends JFrame {
 		add(lb4);
 		
 		
-		lb3 = new JLabel("Novo Serviço(Código):");
+		lb3 = new JLabel("Novo Serviço:");
 		lb3.setBounds(120,290,500,50);
 		lb3.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 15) );
 	    lb3.setForeground(Color.decode("#1E5128"));
 	    add(lb3);
 		
 		
-		lb5 = new JLabel("Novo Categoria(Código):");
-		lb5.setBounds(550,290,500,50);
+		lb5 = new JLabel("Novo Categoria:");
+		lb5.setBounds(650,290,500,50);
 	    lb5.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 15) );
 	    lb5.setForeground(Color.decode("#1E5128"));
 		add(lb5);
@@ -114,17 +116,21 @@ public class TelaCorretorUpdateDados extends JFrame {
 		cliente .setForeground(Color.BLACK);
 		add(cliente);	
 		
-		servico = new JTextField();
-		servico.setBounds(310,300, 120, 30);
-		servico.setFont(new Font("Arial", Font.BOLD, 16));
-		servico.setForeground(Color.BLACK);
-		add(servico);	
+		String s1[] = { "Seguro Auto", "Seguro Auto Clássico", "Seguro Auto Econômico", "Seguro Auto Roubo", 
+				"Seguro Auto Roubo + Rastreador", "Seguro Moto","Seguro Caminhão","Seguro Utilitario Carga" };
+		c1 = new JComboBox(s1);
+		c1.setBounds(270,300, 280, 30);
+		c1.setFont(new Font("Arial", Font.BOLD, 16));
+		c1.setForeground(Color.BLACK);
+		add(c1);	
 		
-		categoria = new JTextField();
-		categoria.setBounds(750,300, 120, 30);
-		categoria.setFont(new Font("Arial", Font.BOLD, 16));
-		categoria.setForeground(Color.BLACK);
-		add(categoria);	
+		
+		String s2[] = { "Vip" , "Completo" };
+		c2 = new JComboBox(s2);
+		c2.setBounds(800,300, 120, 30);
+		c2.setFont(new Font("Arial", Font.BOLD, 16));
+		c2.setForeground(Color.BLACK);
+		add(c2);	
 				
 			
 		atualizar = new JButton("Atualizar");
@@ -158,12 +164,74 @@ public class TelaCorretorUpdateDados extends JFrame {
 			public void actionPerformed(ActionEvent e){
 				DadosDAO dao = new DadosDAO();		
                 Dados bruno = new Dados(); 
-                              
-       
-            	bruno.setCliente(Long.parseLong(cliente.getText()));
-               	bruno.setServico(Long.parseLong(servico.getText()));
-            	bruno.setCategoria(Long.parseLong(categoria.getText()));
-              	
+				if(c1.getSelectedIndex()==0 && c2.getSelectedIndex()==0 ) {
+					bruno.setServico(1);
+					bruno.setCategoria(1);
+	            				
+				}else if (c1.getSelectedIndex()==0 && c2.getSelectedIndex()==1 ) {
+					bruno.setServico(1);
+					bruno.setCategoria(2);
+	            				
+				}else if (c1.getSelectedIndex()==1 && c2.getSelectedIndex()==0) {
+					bruno.setServico(2);
+					bruno.setCategoria(1);
+				
+				}else if (c1.getSelectedIndex()==1 && c2.getSelectedIndex()==1) {
+					bruno.setServico(2);
+					bruno.setCategoria(2);
+				
+				}else if (c1.getSelectedIndex()==2 && c2.getSelectedIndex()==0) {
+					bruno.setServico(3);
+					bruno.setCategoria(1);
+				
+				} else if (c1.getSelectedIndex()==2 && c2.getSelectedIndex()==1) {
+					bruno.setServico(3);
+					bruno.setCategoria(2);
+				
+				} else if (c1.getSelectedIndex()==3 && c2.getSelectedIndex()==0) {
+					bruno.setServico(4);
+					bruno.setCategoria(1);
+				
+				} else if (c1.getSelectedIndex()==3 && c2.getSelectedIndex()==1) {
+					bruno.setServico(4);
+					bruno.setCategoria(2);
+				
+				} else if (c1.getSelectedIndex()==4 && c2.getSelectedIndex()==0) {
+					bruno.setServico(5);
+					bruno.setCategoria(1);
+				
+				} else if (c1.getSelectedIndex()==4 && c2.getSelectedIndex()==1) {
+					bruno.setServico(5);
+					bruno.setCategoria(2);
+				
+				}  else if (c1.getSelectedIndex()==5 && c2.getSelectedIndex()==0) {
+					bruno.setServico(6);
+					bruno.setCategoria(1);
+				
+				} else if (c1.getSelectedIndex()==5 && c2.getSelectedIndex()==1) {
+					bruno.setServico(6);
+					bruno.setCategoria(2);
+				
+				}  else if (c1.getSelectedIndex()==6 && c2.getSelectedIndex()==0) {
+					bruno.setServico(7);
+					bruno.setCategoria(1);
+				
+				} else if (c1.getSelectedIndex()==6 && c2.getSelectedIndex()==1) {
+					bruno.setServico(7);
+					bruno.setCategoria(2);
+				
+				}  else if (c1.getSelectedIndex()==7 && c2.getSelectedIndex()==0) {
+					bruno.setServico(8);
+					bruno.setCategoria(1);
+				
+				} else if (c1.getSelectedIndex()==7 && c2.getSelectedIndex()==1) {
+					bruno.setServico(8);
+					bruno.setCategoria(2);
+				
+				}                                                                             
+                                      
+               	bruno.setCliente(Long.parseLong(cliente.getText()));
+               	
              	try {
 					dao.update(bruno);
 					JOptionPane.showMessageDialog(null,"Conta Atualizada");

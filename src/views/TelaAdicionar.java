@@ -48,7 +48,7 @@ public class TelaAdicionar extends JFrame {
 		Componentes();
 		Eventos();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setVisible(true);
+		setVisible(false);
 		setLocationRelativeTo(null);
 		setBounds(0,0,1080,720);
 		

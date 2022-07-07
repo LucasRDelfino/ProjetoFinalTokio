@@ -40,7 +40,7 @@ public class TelaSelectCliente extends JFrame {
 		Componentes();
 		Eventos();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setVisible(true);
+		setVisible(false);
 		setLocationRelativeTo(null);
 		setBounds(0,0,1080,720);
 		
@@ -105,7 +105,7 @@ public class TelaSelectCliente extends JFrame {
            
             st = c.prepareStatement(sql);
             rs= st.executeQuery();
-            DefaultTableModel tableModel = new DefaultTableModel(new String[] { "Nome","CPF","Telefone","Email","Endereço","Dt_nasc" }, 0) {
+            DefaultTableModel tableModel = new DefaultTableModel(new String[] { "Id","Nome","CPF","Telefone","Email","CEP","Idade" }, 0) {
                 public boolean isCellEditable(int row, int col) {
                     return false;
                 }

@@ -20,7 +20,7 @@ public class DadosDAO {
 	}
 	
 	public void update(Dados dado) throws SQLException {
-		String sql = "update t_auto_dados set cd_servico=?,cd_categoria=? where cd_cliente=?";
+		String sql = "update t_auto_dado set cd_servico=?,cd_categoria=? where cd_cliente=?";
 		PreparedStatement stmt = conexao.prepareStatement(sql);
 		stmt.setLong(1, dado.getServico());
 		stmt.setLong(2, dado.getCategoria());

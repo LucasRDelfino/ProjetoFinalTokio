@@ -20,7 +20,7 @@ public class TelaCorretor extends JFrame{
 		Componentes();
 		Eventos();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setVisible(true);
+		setVisible(false);
 		setLocationRelativeTo(null);
 		setBounds(0,0,1080,720);
 		
@@ -47,7 +47,7 @@ public class TelaCorretor extends JFrame{
 		add(lb1);		
 		
 		//TITULO
-		lb2 = new JLabel ("Painel do Cliente");
+		lb2 = new JLabel ("Painel do Corretor");
 		lb2.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 41) );
 		lb2.setForeground(verde);
 		lb2.setBounds(420,10,400,100);
@@ -84,18 +84,19 @@ public class TelaCorretor extends JFrame{
 		lb7.setForeground(verde);
 		add(lb7);	
 		
-		lb8 = new JLabel ("4 - Seleciona o serviço do cliente");
+		lb8 = new JLabel ("4 - Deleta um cliente da base de dados");
 		lb8.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 20) );
-		lb8.setBounds(630, 410 ,540 , 250);
+		lb8.setBounds(630 , 410 ,540 , 250);
 		lb8.setForeground(verde);
 		add(lb8);	
 		
-		lb9 = new JLabel ("5 - Deleta um cliente da base de dados");
+		lb9 = new JLabel ("5 - Seleciona o serviço do cliente");
 		lb9.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 20) );
-		lb9.setBounds(630 , 460 ,540 , 250);
+		lb9.setBounds(630, 460 ,540 , 250);
 		lb9.setForeground(verde);
 		add(lb9);	
-	
+		
+			
 		lb10 = new JLabel ("6 - Atualiza o serviço/categoria do cliente");
 		lb10.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 20) );
 		lb10.setBounds(630, 510 ,540 , 250);
@@ -126,16 +127,16 @@ public class TelaCorretor extends JFrame{
 		bt3.setBackground(verde);
 		bt3.setForeground(Color.white);
 		
-		bt4 = new JButton("4 - Cat/Serviço");
+		bt4 = new JButton("4 - EXCLUIR");
 		bt4.setBounds(150, 370, 150, 75);
 		bt4.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 13) );
 		add(bt4);
 		bt4.setBackground(verde);
 		bt4.setForeground(Color.white);
 		
-		bt5 = new JButton("5 - DELETAR ");
+		bt5 = new JButton("5 - CAT/SERVICOS ");
 		bt5.setBounds(450, 370, 150, 75);
-		bt5.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 13) );
+		bt5.setFont( new Font("Lucida Bright Demibold", Font.BOLD, 12) );
 		add(bt5);
 		bt5.setBackground(verde);
 		bt5.setForeground(Color.white);
@@ -200,7 +201,7 @@ public class TelaCorretor extends JFrame{
 		bt4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 //Muda de Tela
-				  new TelaCorretorSelectDados().setVisible(true);				
+				  new TelaCorretorDelete().setVisible(true);				
 				  setVisible(false);
 				 
 			
@@ -210,7 +211,7 @@ public class TelaCorretor extends JFrame{
 		bt5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 //Muda de Tela
-				  new TelaCorretorDelete().setVisible(true);				
+				  new TelaCorretorSelectDados().setVisible(true);				
 				  setVisible(false);
 				 
 			
